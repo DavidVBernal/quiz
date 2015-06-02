@@ -13,3 +13,7 @@ exports.answer = function (req, res) {
 	}	
 };
 
+// GET /autor
+exports.autor = function (req, res) {
+	res.render('autor', {autor: 'David Velazquez Bernal'});
+};
