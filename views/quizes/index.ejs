@@ -3,3 +3,9 @@
 		<tr><td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td></tr>
 	<% } %>
 </table>
+<p>
+<form method="get" action="/quizes">
+	Introduce texto a buscar en las preguntas: <p>
+	<input type="text" name="search" value="texto_a_buscar"/>
+	<input type="submit" value= "Enviar"/>
+</form>
