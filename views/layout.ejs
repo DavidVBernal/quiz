@@ -22,6 +22,17 @@
 			<span><a href="/autor">Cr&eacute;ditos</a></span>
 		</nav>
 		<section class="main" id="s1">
+			<% if (errors.length != 0) { %>
+				<span id='ErrorMsgs'>
+				    Corregir errores:<br/>
+					<% for (var prop in errors) {	%>
+						<% for (var i=0; i<errors[prop].length; ++i) { %>
+							   <span> <%= errors[prop][i] %> </span><br/>
+						<% } %>
+ 					<% } %>
+				</span>
+			<% } %>
+
 			<div><%- body %></div>
 		</section>
 
