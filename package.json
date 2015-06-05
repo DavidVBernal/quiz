@@ -20,6 +20,7 @@
     "express": "~4.12.4",
     "express-partial": "^0.1.0",
     "express-partials": "^0.3.0",
+    "method-override": "^2.3.1",
     "morgan": "~1.5.3",
     "pg": "^4.1.1",
     "pg-hstore": "^2.3.2",
