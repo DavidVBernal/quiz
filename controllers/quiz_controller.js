@@ -119,6 +119,13 @@ exports.update = function(req, res) {
 	}     // Redirección HTTP a lista de preguntas (URL relativo)
 };
 
+exports.destroy = function(req, res) {
+	req.quiz.destroy().then( function() {
+		res.redirect('/quizes');
+	}).catch(function(error){next(error)});
+};
+
+
 // GET /autor
 exports.autor = function (req, res) {
 	res.render('autor', {autor: 'David Velazquez Bernal', errors: []});
