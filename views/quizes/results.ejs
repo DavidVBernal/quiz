@@ -1,7 +1,7 @@
 <h3>Resultados de la b&uacute;squeda:</h3>
 <table>
 	<% var i; for (i=0; i < quizes.length; i++) { %>
-		<tr><td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td></tr>
+		<tr><td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %><%= quizes[i].tematica %></a></td></tr>
 	<% } %>
 </table>
 <p>
