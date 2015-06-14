@@ -4,3 +4,4 @@ npm-debug.log
 .env
 quiz.sqlite
 *.bak
+.idea/**
