@@ -27,6 +27,33 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
 
+//Tiempo de sesion 2 minutos
+app.use(function(req, res, next) {
+    var timeout = 120;
+console.log("entrando...");
+
+    if(req.session.user){
+        console.log("Hay sesion---");
+
+        if(!req.session.tsession){
+            req.session.tsession = (new Date()).getTime();
+            req.session.timeout = timeout;
+            console.log("timeout " + req.session.timeout);
+        }else{
+            console.log("Tenemos tsession");
+            if((new Date()).getTime() - req.session.tsession > (timeout * 1000)){
+                delete req.session.user;
+                delete req.session.tsession;
+                console.log("Forzamos logout");
+            }else{//hay actividad se pone nueva marca de tiempo
+                req.session.tsession = (new Date()).getTime();
+                req.session.timeout = timeout;
+            }
+        }
+    }
+    next();
+});
+
 // Helpers dinamicos:
 app.use(function(req, res, next) {
     // guardar path en session.redir para despues de login

@@ -10,14 +10,36 @@
     <link rel='stylesheet' type='text/css' 
 			media='only screen and (max-width: 480px)'
 			href='/stylesheets/smartphone.css' />
+	   <% if(session.user){ %>
+	      <script type="text/javascript">
+
+			  var timeout = <%= session.timeout %>;
+			  function showTime(){
+					var dtimeout = document.getElementById('timeout');
+					var logout=document.getElementById('logout');
+					if(timeout < 0) {
+						dtimeout.innerHTML = '';
+						logout.href='/login';
+						logout.innerHTML='Login';
+					}else{
+						var min=Math.floor(timeout/60);
+						var seg=(timeout--)%60;
+						var sMin='00'+min;
+						var sSeg='00'+seg;
+						dtimeout.innerHTML = '(' + sMin.substring(sMin.length-2)+':'+sSeg.substring(sSeg.length-2)+') ';
+					}
+			  }
+		  </script>
+	  <% } %>
+
   </head>
-  <body>
+  <body <% if(session.user){ %> onload="showTime(); setInterval(showTime, 1000);" <% } %> >
 	<div id="page-wrap">
 		<header class="main" id="h1">
 			<%if(!session.user){%>
 			      <span class="right"><a href="/login">Login</a></span>
 			    <%}else{%>
-			      <span class="right"> <%=session.user.username%> <a href="/logout">Logout</a></span>
+				  <span class="right"> <%= session.user.username %> <span id="timeout"></span> <a id="logout" href="/logout">Logout</a></span>
 			<%}%>
 			<h2>Quiz<span>: el juego de las preguntas</span></h2>
 		</header>
